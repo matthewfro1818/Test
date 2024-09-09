@@ -206,7 +206,7 @@ class CopyState extends MusicBeatState
 			{
 				for(directory in directoriesToIgnore)
 				{
-					if(file.startsWith(directory)
+					if(file.startsWith(directory))
 					   filesToRemove.push(file);
 				}
 			}
