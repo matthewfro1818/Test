@@ -89,13 +89,70 @@ class WeekData {
 		for (i in 0...sexList.length) {
 			for (j in 0...directories.length) { 
 			   if((PlayState.isUniverse))
-				fileToCheck = directories[j] + 'universe-weeks/Universe/' + sexList[i] + '.json';
+				fileToCheck = directories[j] + 'universe-weeks/Universe/' + sexList[i] + '.json';var week:WeekFile = getWeekFile(fileToCheck);
+					if(week != null) {
+						var weekFile:WeekData = new WeekData(week, sexList[i]);
+
+						#if MODS_ALLOWED
+						if(j >= originalLength) {
+							weekFile.folder = directories[j].substring(Paths.mods().length, directories[j].length-1);
+						}
+						#end
+
+						if(weekFile != null && (isStoryMode == null || (isStoryMode && !weekFile.hideStoryMode) || (!isStoryMode && !weekFile.hideFreeplay))) {
+							weeksLoaded.set(sexList[i], weekFile);
+							weeksList.push(sexList[i]);
+						}
+					}
 			   if((.isGolden))
-			        var fileToCheck:String = directories[j] + 'universe-weeks/Golden/' + sexList[i] + '.json';
+			        var fileToCheck:String = directories[j] + 'universe-weeks/Golden/' + sexList[i] + '.json';if(!weeksLoaded.exists(sexList[i])) {
+					var week:WeekFile = getWeekFile(fileToCheck);
+					if(week != null) {
+						var weekFile:WeekData = new WeekData(week, sexList[i]);
+
+						#if MODS_ALLOWED
+						if(j >= originalLength) {
+							weekFile.folder = directories[j].substring(Paths.mods().length, directories[j].length-1);
+						}
+						#end
+
+						if(weekFile != null && (isStoryMode == null || (isStoryMode && !weekFile.hideStoryMode) || (!isStoryMode && !weekFile.hideFreeplay))) {
+							weeksLoaded.set(sexList[i], weekFile);
+							weeksList.push(sexList[i]);
+						}
+					}
 			   if((PlayState.isDaveAndBambi))
-			        var fileToCheck:String = directories[j] + 'universe-weeks/DaveAndBambi/' + sexList[i] + '.json';
+			        var fileToCheck:String = directories[j] + 'universe-weeks/DaveAndBambi/' + sexList[i] + '.json';var week:WeekFile = getWeekFile(fileToCheck);
+					if(week != null) {
+						var weekFile:WeekData = new WeekData(week, sexList[i]);
+
+						#if MODS_ALLOWED
+						if(j >= originalLength) {
+							weekFile.folder = directories[j].substring(Paths.mods().length, directories[j].length-1);
+						}
+						#end
+
+						if(weekFile != null && (isStoryMode == null || (isStoryMode && !weekFile.hideStoryMode) || (!isStoryMode && !weekFile.hideFreeplay))) {
+							weeksLoaded.set(sexList[i], weekFile);
+							weeksList.push(sexList[i]);
+						}
+					}
 			   if((PlayState.isSecret))
-				var fileToCheck:String = directories[j] + 'universe-weeks/Secret/' + sexList[i] + '.json';
+				var fileToCheck:String = directories[j] + 'universe-weeks/Secret/' + sexList[i] + '.json';var week:WeekFile = getWeekFile(fileToCheck);
+					if(week != null) {
+						var weekFile:WeekData = new WeekData(week, sexList[i]);
+
+						#if MODS_ALLOWED
+						if(j >= originalLength) {
+							weekFile.folder = directories[j].substring(Paths.mods().length, directories[j].length-1);
+						}
+						#end
+
+						if(weekFile != null && (isStoryMode == null || (isStoryMode && !weekFile.hideStoryMode) || (!isStoryMode && !weekFile.hideFreeplay))) {
+							weeksLoaded.set(sexList[i], weekFile);
+							weeksList.push(sexList[i]);
+						}
+					}
 			   else
 				var fileToCheck:String = directories[j] + 'weeks/' + sexList[i] + '.json';
 				if(!weeksLoaded.exists(sexList[i])) {
