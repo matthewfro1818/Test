@@ -103,6 +103,7 @@ class WeekData {
 					var fileToCheck:String;
 					var week:WeekFile = getWeekFile(fileToCheck);
 					if(week != null) {
+						var fileToCheck:String;
 						var weekFile:WeekData = new WeekData(week, sexList[i]);
 
 						#if MODS_ALLOWED
