@@ -6,7 +6,7 @@ import lime.app.Application;
 import states.editors.MasterEditorMenu;
 import options.OptionsState;
 
-enum PlayMenuColumn‎ {
+enum PlayMenuColumn‎‎ {
 	LEFT;
 	CENTER;
 	RIGHT;
