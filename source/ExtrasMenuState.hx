@@ -40,8 +40,6 @@ class ExtrasMenuState extends MusicBeatState
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 
-	var i:Int = null;
-
 	var scale:Float = 1;
 
 	override function create()
