@@ -310,24 +310,24 @@ class ExtrasMenuState extends MusicBeatState
 							case 'extras':
 								FlxG.switchState(new ExtrasMenuState());
 							case 'story_mode':
-								MusicBeatState.switchState(new StoryMenuState());
+								MusicBeatState.switchState(new states.StoryMenuState());
 							case 'freeplay':
-								MusicBeatState.switchState(new FreeplayState());
+								MusicBeatState.switchState(new states.FreeplayState());
 
 							#if MODS_ALLOWED
 							case 'mods':
-								MusicBeatState.switchState(new ModsMenuState());
+								MusicBeatState.switchState(new states.ModsMenuState());
 							#end
 
 							#if ACHIEVEMENTS_ALLOWED
 							case 'achievements':
-								MusicBeatState.switchState(new AchievementsMenuState());
+								MusicBeatState.switchState(new states.AchievementsMenuState());
 							#end
 
 							case 'credits':
-								MusicBeatState.switchState(new CreditsState());
+								MusicBeatState.switchState(new states.CreditsState());
 							case 'options':
-								MusicBeatState.switchState(new OptionsState());
+								MusicBeatState.switchState(new options.OptionsState());
 								OptionsState.onPlayState = false;
 								if (PlayState.SONG != null)
 								{
