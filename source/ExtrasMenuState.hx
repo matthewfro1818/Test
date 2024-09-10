@@ -327,7 +327,7 @@ class ExtrasMenuState extends MusicBeatState
 							case 'credits':
 								MusicBeatState.switchState(new states.CreditsState());
 							case 'options':
-								MusicBeatState.switchState(new options.OptionsState());
+								MusicBeatState.switchState(new OptionsState());
 								OptionsState.onPlayState = false;
 								if (PlayState.SONG != null)
 								{
