@@ -88,8 +88,18 @@ class WeekData {
 		var sexList:Array<String> = CoolUtil.coolTextFile(Paths.getSharedPath('weeks/weekList.txt'));
 		for (i in 0...sexList.length) {
 			for (j in 0...directories.length) {
+			   if(PlayState.isUniverse)
+				var fileToCheck:String = directories[j] + 'universe-weeks/Universe/' + sexList[i] + '.json';
+			   if(PlayState.isGolden)
+			        var fileToCheck:String = directories[j] + 'universe-weeks/Golden/' + sexList[i] + '.json';
+			   if(PlayState.isDaveAndBambi)
+			        var fileToCheck:String = directories[j] + 'universe-weeks/DaveAndBambi/' + sexList[i] + '.json';
+			   if(PlayState.isSecret)
+			        var fileToCheck:String = directories[j] + 'universe-weeks/Secret/' + sexList[i] + '.json';
+			   else
 				var fileToCheck:String = directories[j] + 'weeks/' + sexList[i] + '.json';
 				if(!weeksLoaded.exists(sexList[i])) {
+                                        var fileToCheck:String;
 					var week:WeekFile = getWeekFile(fileToCheck);
 					if(week != null) {
 						var weekFile:WeekData = new WeekData(week, sexList[i]);
