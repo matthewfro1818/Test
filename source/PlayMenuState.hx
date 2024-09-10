@@ -26,9 +26,9 @@ class PlayMenuState extends MusicBeatState
 
 	//Centered/Text options
 	var optionShit:Array<String> = [
-		#if MODS_ALLOWED 'mods', #end
-		#if DISCORD_ALLOWED 'discord', #end
-		'credits'
+         	'extrended',
+		'golden',
+		'daveandbambi'
 	];
 
 	var leftOption:String = #if ACHIEVEMENTS_ALLOWED 'achievements' #else null #end;
@@ -302,13 +302,13 @@ class PlayMenuState extends MusicBeatState
 					{
 						switch (option)
 						{
-							case 'extrended_universe':
+							case 'extrended':
 								MusicBeatState.switchState(new states.FreeplayState());
 								PlayState.isUniverse = true;
 						        case 'golden':
 								MusicBeatState.switchState(new states.FreeplayState());
 								PlayState.isGolden = true;
-							case 'dave_and_bambi':
+							case 'daveandbambi':
 								MusicBeatState.switchState(new states.FreeplayState());
 								PlayState.isDaveAndBambi = true;
 						}
