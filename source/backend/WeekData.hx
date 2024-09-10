@@ -103,7 +103,7 @@ class WeekData {
 							weeksLoaded.set(sexList[i], weekFile);
 							weeksList.push(sexList[i]);
 						}
-					}
+				      }
 			   }
 			   if((PlayState.isGolden))
 			        var fileToCheck:String = directories[j] + 'universe-weeks/Golden/' + sexList[i] + '.json';if(!weeksLoaded.exists(sexList[i])) {
@@ -121,7 +121,7 @@ class WeekData {
 							weeksLoaded.set(sexList[i], weekFile);
 							weeksList.push(sexList[i]);
 						}
-					}
+				      }
 			   }
 			   if((PlayState.isDaveAndBambi))
 			        var fileToCheck:String = directories[j] + 'universe-weeks/DaveAndBambi/' + sexList[i] + '.json';var week:WeekFile = getWeekFile(fileToCheck);
@@ -138,7 +138,7 @@ class WeekData {
 							weeksLoaded.set(sexList[i], weekFile);
 							weeksList.push(sexList[i]);
 						}
-					}
+				      }
 			   }
 			   if((PlayState.isSecret))
 				var fileToCheck:String = directories[j] + 'universe-weeks/Secret/' + sexList[i] + '.json';var week:WeekFile = getWeekFile(fileToCheck);
@@ -155,7 +155,7 @@ class WeekData {
 							weeksLoaded.set(sexList[i], weekFile);
 							weeksList.push(sexList[i]);
 						}
-					}
+				      }
 			   }
 			   else {
 				var fileToCheck:String = directories[j] + 'weeks/' + sexList[i] + '.json';
@@ -178,8 +178,9 @@ class WeekData {
 				}
 			}
 		}
-
-		#if MODS_ALLOWED
+	}
+		
+	#if MODS_ALLOWED
 		for (i in 0...directories.length) {
 			var directory:String = directories[i] + 'weeks/';
 			if(FileSystem.exists(directory)) {
