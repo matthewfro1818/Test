@@ -313,6 +313,14 @@ class PlayState extends MusicBeatState
 
 		if (isStoryMode)
 			detailsText = "Story Mode: " + WeekData.getCurrentWeek().weekName;
+		if (isUniverse)
+			detailsText = "Freeplay";
+		if (isGolden)
+			detailsText = "Freeplay";
+		if (isDaveAndBambi)
+			detailsText = "Freeplay";
+		if (isSecret)
+			detailsText = "Freeplay";
 		else
 			detailsText = "Freeplay";
 
