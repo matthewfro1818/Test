@@ -69,7 +69,7 @@ class PlayMenuState extends MusicBeatState
 		magenta.screenCenter();
 		add(magenta);
 
-		var magenta2 = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/uhhh'));
+		var magenta2 = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/thing'));
 		magenta2.scrollFactor.set(0, yScroll);
 		magenta2.updateHitbox();
 		magenta2.screenCenter();
@@ -124,6 +124,7 @@ class PlayMenuState extends MusicBeatState
 	function createMenuItem(name:String, x:Float, y:Float):FlxSprite
 	{
 		var menuItem = new FlxSprite().loadGraphic(Paths.image('mainmenu/$name'));
+		menuItem.screenCenter(X);
 		menuItems.add(menuItem);
 		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
@@ -136,10 +137,7 @@ class PlayMenuState extends MusicBeatState
 		return menuItem;
 
 		var menuChar = new FlxSprite().loadGraphic(Paths.image('backgrounds/$name'));
-		menuChar.x = 238;
-		menuChar.y = 199;
 		menuChar.screenCenter(X);
-		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
 		menuChar.scrollFactor.set(0, scr);
 		menuChar.updateHitbox();
@@ -313,39 +311,6 @@ class PlayMenuState extends MusicBeatState
 							case 'dave_and_bambi':
 								MusicBeatState.switchState(new states.FreeplayState());
 								PlayState.isDaveAndBambi = true;
-							case 'secret':
-								MusicBeatState.switchState(new states.FreeplayState());
-								PlayState.isSecret = true;
-							case 'play':
-								FlxG.switchState(new PlayMenuState());
-							case 'extras':
-								FlxG.switchState(new ExtrasMenuState());
-							case 'story_mode':
-								MusicBeatState.switchState(new states.StoryMenuState());
-							case 'freeplay':
-								MusicBeatState.switchState(new states.FreeplayState());
-
-							#if MODS_ALLOWED
-							case 'mods':
-								MusicBeatState.switchState(new states.ModsMenuState());
-							#end
-
-							#if ACHIEVEMENTS_ALLOWED
-							case 'achievements':
-								MusicBeatState.switchState(new states.AchievementsMenuState());
-							#end
-
-							case 'credits':
-								MusicBeatState.switchState(new states.CreditsState());
-							case 'options':
-								MusicBeatState.switchState(new OptionsState());
-								OptionsState.onPlayState = false;
-								if (PlayState.SONG != null)
-								{
-									PlayState.SONG.arrowSkin = null;
-									PlayState.SONG.splashSkin = null;
-									PlayState.stageUI = 'normal';
-								}
 						}
 					});
 					
