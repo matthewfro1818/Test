@@ -104,7 +104,7 @@ class WeekData {
 							weeksList.push(sexList[i]);
 						}
 					}
-			   if((.isGolden))
+			   if((PlayState.isGolden))
 			        var fileToCheck:String = directories[j] + 'universe-weeks/Golden/' + sexList[i] + '.json';if(!weeksLoaded.exists(sexList[i])) {
 					var week:WeekFile = getWeekFile(fileToCheck);
 					if(week != null) {
