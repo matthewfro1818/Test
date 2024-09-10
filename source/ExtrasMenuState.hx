@@ -38,7 +38,6 @@ class ExtrasMenuState extends MusicBeatState
 	var rightOption:String = 'options';
 
 	var magenta:FlxSprite;
-	var bgMenu:FlxBackdrop;
 	var camFollow:FlxObject;
 
 	var i:Int = null;
@@ -60,17 +59,15 @@ class ExtrasMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		var yScroll:Float = 0.25;
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
+
+		var yScroll:Float = 0.25;
+		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/space'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.scrollFactor.set(0, yScroll);
 		bg.setGraphicSize(Std.int(bg.width * 1.175));
 		bg.updateHitbox();
 		bg.screenCenter();
 		add(bg);
-
-		bgMenu = new FlxBackdrop(Paths.image('mainmenu/grid'), 10, 0, true, true);
-        bgMenu.velocity.set(70, 70); //thats it :D- snake
-		add(bgMenu);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
