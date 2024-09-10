@@ -1,22 +1,18 @@
-package;
+package states;
 
 import flixel.FlxObject;
 import flixel.effects.FlxFlicker;
-import flixel.addons.display.FlxBackdrop;
 import lime.app.Application;
 import states.editors.MasterEditorMenu;
-import states.ModsMenuState;
-import states.MainMenuState;
-import states.CreditsState ;
 import options.OptionsState;
 
-enum ExtrasMenuColumn {
+enum ExtrasMenuColumn‎ {
 	LEFT;
 	CENTER;
 	RIGHT;
 }
 
-class ExtrasMenuState extends MusicBeatState
+class ExtrasMenuState‎ extends MusicBeatState
 {
 	public static var psychEngineVersion:String = '1.0-prerelease'; // This is also used for Discord RPC
 	public static var curSelected:Int = 0;
@@ -55,8 +51,6 @@ class ExtrasMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		var yScroll:Float = 0.25;
-
-		var yScroll:Float = 0.25;
 		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/space'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.scrollFactor.set(0, yScroll);
@@ -78,16 +72,10 @@ class ExtrasMenuState extends MusicBeatState
 		magenta2.scrollFactor.set(0, yScroll);
 		magenta2.updateHitbox();
 		magenta2.screenCenter();
-		magenta2.visible = false;
-		magenta2.color = 0xFFfd719b;
 		add(magenta2);
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
-
-		/*if(optionShit.length > 6) {
-			scale = 6 / optionShit.length;
-		}*/
 
 		for (num => option in optionShit)
 		{
@@ -125,6 +113,8 @@ class ExtrasMenuState extends MusicBeatState
 		#end
 		#end
 
+		addTouchPad('NONE', 'E');
+
 		super.create();
 
 		FlxG.camera.follow(camFollow, null, 0.15);
@@ -133,9 +123,6 @@ class ExtrasMenuState extends MusicBeatState
 	function createMenuItem(name:String, x:Float, y:Float):FlxSprite
 	{
 		var menuItem = new FlxSprite().loadGraphic(Paths.image('mainmenu/$name'));
-		menuItem.scale.x = scale;
-		menuItem.scale.y = scale;
-		menuItem.screenCenter(X);
 		menuItems.add(menuItem);
 		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
@@ -148,8 +135,6 @@ class ExtrasMenuState extends MusicBeatState
 		return menuItem;
 
 		var menuChar = new FlxSprite().loadGraphic(Paths.image('backgrounds/$name'));
-		menuChar.scale.x = scale;
-		menuChar.scale.y = scale;
 		menuChar.x = 238;
 		menuChar.y = 199;
 		menuChar.screenCenter(X);
@@ -283,10 +268,10 @@ class ExtrasMenuState extends MusicBeatState
 				selectedSomethin = true;
 				FlxG.mouse.visible = false;
 				FlxG.sound.play(Paths.sound('cancelMenu'));
-				MusicBeatState.switchState(new MainMenuState());
+				MusicBeatState.switchState(new TitleState());
 			}
 
-			if (controls.ACCEPT || (FlxG.mouse.justPressed && allowMouse))
+			if (controls.ACCEPT || (FlxG.mouse.overlaps(menuItems, FlxG.camera) && FlxG.mouse.justPressed && allowMouse))
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				if (optionShit[curSelected] != 'donate')
@@ -318,12 +303,27 @@ class ExtrasMenuState extends MusicBeatState
 					{
 						switch (option)
 						{
+							case 'play':
+								FlxG.switchState(new PlayMenuState());
+							case 'extras':
+								FlxG.switchState(new ExtrasMenuState());
+							case 'story_mode':
+								MusicBeatState.switchState(new StoryMenuState());
+							case 'freeplay':
+								MusicBeatState.switchState(new FreeplayState());
+
 							#if MODS_ALLOWED
 							case 'mods':
 								MusicBeatState.switchState(new ModsMenuState());
 							#end
+
+							#if ACHIEVEMENTS_ALLOWED
+							case 'achievements':
+								MusicBeatState.switchState(new AchievementsMenuState());
+							#end
+
 							case 'credits':
-								MusicBeatState.switchState(new CreditsState ());
+								MusicBeatState.switchState(new CreditsState());
 							case 'options':
 								MusicBeatState.switchState(new OptionsState());
 								OptionsState.onPlayState = false;
@@ -346,14 +346,12 @@ class ExtrasMenuState extends MusicBeatState
 				}
 				else CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
 			}
-			#if desktop
-			if (controls.justPressed('debug_1'))
+			else if (controls.justPressed('debug_1') || touchPad.buttonE.justPressed)
 			{
 				selectedSomethin = true;
 				FlxG.mouse.visible = false;
 				MusicBeatState.switchState(new MasterEditorMenu());
 			}
-			#end
 		}
 
 		super.update(elapsed);
