@@ -91,15 +91,6 @@ class WeekData {
 		var sexList:Array<String> = CoolUtil.coolTextFile(Paths.getSharedPath('weeks/weekList.txt'));
 		for (i in 0...sexList.length) {
 			for (j in 0...directories.length) {
-			   if((PlayState.isUniverse))
-				fileToCheck = directories[j] + 'universe-weeks/Universe/' + sexList[i] + '.json';
-			   if((PlayState.isGolden))
-			        fileToCheck = directories[j] + 'universe-weeks/Golden/' + sexList[i] + '.json';
-			   if((PlayState.isDaveAndBambi))
-			        fileToCheck = directories[j] + 'universe-weeks/DaveAndBambi/' + sexList[i] + '.json';
-			   if((PlayState.isSecret))
-				fileToCheck = directories[j] + 'universe-weeks/Secret/' + sexList[i] + '.json';
-			   else
 				var fileToCheck:String = directories[j] + 'weeks/' + sexList[i] + '.json';
 				if(!weeksLoaded.exists(sexList[i])) {
 					var week:WeekFile = getWeekFile(fileToCheck);
@@ -112,6 +103,14 @@ class WeekData {
 							weekFile.folder = directories[j].substring(Paths.mods().length, directories[j].length-1);
 						}
 						#end
+			   if((PlayState.isUniverse))
+				fileToCheck = directories[j] + 'universe-weeks/Universe/' + sexList[i] + '.json';
+			   if((PlayState.isGolden))
+			        fileToCheck = directories[j] + 'universe-weeks/Golden/' + sexList[i] + '.json';
+			   if((PlayState.isDaveAndBambi))
+			        fileToCheck = directories[j] + 'universe-weeks/DaveAndBambi/' + sexList[i] + '.json';
+			   if((PlayState.isSecret))
+				fileToCheck = directories[j] + 'universe-weeks/Secret/' + sexList[i] + '.json';
 
 						if(weekFile != null && (isStoryMode == null || (isStoryMode && !weekFile.hideStoryMode) || (!isStoryMode && !weekFile.hideFreeplay))) {
 							weeksLoaded.set(sexList[i], weekFile);
