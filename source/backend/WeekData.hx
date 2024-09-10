@@ -38,6 +38,8 @@ class WeekData {
 	public var hideFreeplay:Bool;
 	public var difficulties:String;
 
+        public var fileToCheck:String;
+
 	public var fileName:String;
 
 	public static function createWeekFile():WeekFile {
@@ -100,7 +102,6 @@ class WeekData {
 			   else
 				var fileToCheck:String = directories[j] + 'weeks/' + sexList[i] + '.json';
 				if(!weeksLoaded.exists(sexList[i])) {
-					public var fileToCheck:String;
 					var week:WeekFile = getWeekFile(fileToCheck);
 					if(week != null) {
 						var fileToCheck:String;
@@ -120,7 +121,7 @@ class WeekData {
 				}
 			}
 		}
-
+	        
 		#if MODS_ALLOWED
 		for (i in 0...directories.length) {
 			var directory:String = directories[i] + 'weeks/';
