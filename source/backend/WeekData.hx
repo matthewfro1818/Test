@@ -157,7 +157,7 @@ class WeekData {
 						}
 					}
 			   }
-			   else
+			   else {
 				var fileToCheck:String = directories[j] + 'weeks/' + sexList[i] + '.json';
 				if(!weeksLoaded.exists(sexList[i])) {
 					var week:WeekFile = getWeekFile(fileToCheck);
