@@ -309,12 +309,16 @@ class PlayMenuState extends MusicBeatState
 						{
 							case 'extrended_universe':
 								MusicBeatState.switchState(new FreeplayState());
+			                                     	PlayState.isUniverse = true;
 						    case 'golden':
 								MusicBeatState.switchState(new FreeplayState());
+			                                     	PlayState.isGolden = true;
 							case 'dave_and_bambi':
 								MusicBeatState.switchState(new FreeplayState());
+			                                     	PlayState.isDaveAndBambi = true;
 							case 'secret':
-								MusicBeatState.switchState(new FreeplayState());	
+								MusicBeatState.switchState(new FreeplayState());
+			                                     	PlayState.isSecret = true;	
 						}
 					});
 					
@@ -333,7 +337,8 @@ class PlayMenuState extends MusicBeatState
 			{
 				selectedSomethin = true;
 				FlxG.mouse.visible = false;
-				MusicBeatState.switchState(new FreeplayState());	
+				MusicBeatState.switchState(new FreeplayState());
+			        PlayState.isSecret = true;
 			}
 			#end
 		}
