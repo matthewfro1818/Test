@@ -1,25 +1,22 @@
-package;
+package states;
 
 import flixel.FlxObject;
 import flixel.effects.FlxFlicker;
-import flixel.addons.display.FlxBackdrop;
 import lime.app.Application;
 import states.editors.MasterEditorMenu;
-import states.FreeplayState;
-import states.MainMenuState;
 import options.OptionsState;
 
-enum PlayMenuColumn {
+enum PlayMenuColumn‎ {
 	LEFT;
 	CENTER;
 	RIGHT;
 }
 
-class PlayMenuState extends MusicBeatState
+class PlayMenuState‎ extends MusicBeatState
 {
 	public static var psychEngineVersion:String = '1.0-prerelease'; // This is also used for Discord RPC
 	public static var curSelected:Int = 0;
-	public static var curColumn:PlayMenuColumn = RIGHT;
+	public static var curColumn:ExtrasMenuColumn = LEFT;
 	var allowMouse:Bool = true; //Turn this off to block mouse movement in menus
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
@@ -28,9 +25,9 @@ class PlayMenuState extends MusicBeatState
 
 	//Centered/Text options
 	var optionShit:Array<String> = [
-		'extrended_universe',
-		'golden',
-		'dave_and_bambi'
+		#if MODS_ALLOWED 'mods', #end
+		#if DISCORD_ALLOWED 'discord', #end
+		'credits'
 	];
 
 	var leftOption:String = #if ACHIEVEMENTS_ALLOWED 'achievements' #else null #end;
@@ -38,10 +35,6 @@ class PlayMenuState extends MusicBeatState
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
-
-	var i:Int = null;
-
-	var scale:Float = 1;
 
 	override function create()
 	{
@@ -84,10 +77,6 @@ class PlayMenuState extends MusicBeatState
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
-		/*if(optionShit.length > 6) {
-			scale = 6 / optionShit.length;
-		}*/
-
 		for (num => option in optionShit)
 		{
 			var item:FlxSprite = createMenuItem(option, 0, (num * 140) + 90);
@@ -124,6 +113,8 @@ class PlayMenuState extends MusicBeatState
 		#end
 		#end
 
+		addTouchPad('NONE', 'E');
+
 		super.create();
 
 		FlxG.camera.follow(camFollow, null, 0.15);
@@ -132,9 +123,6 @@ class PlayMenuState extends MusicBeatState
 	function createMenuItem(name:String, x:Float, y:Float):FlxSprite
 	{
 		var menuItem = new FlxSprite().loadGraphic(Paths.image('mainmenu/$name'));
-		menuItem.scale.x = scale;
-		menuItem.scale.y = scale;
-		menuItem.screenCenter(X);
 		menuItems.add(menuItem);
 		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
@@ -145,6 +133,20 @@ class PlayMenuState extends MusicBeatState
 		menuItem.scrollFactor.set();
 		menuItems.add(menuItem);
 		return menuItem;
+
+		var menuChar = new FlxSprite().loadGraphic(Paths.image('backgrounds/$name'));
+		menuChar.x = 238;
+		menuChar.y = 199;
+		menuChar.screenCenter(X);
+		var scr:Float = (optionShit.length - 4) * 0.135;
+		if(optionShit.length < 6) scr = 0;
+		menuChar.scrollFactor.set(0, scr);
+		menuChar.updateHitbox();
+		
+		menuChar.antialiasing = ClientPrefs.data.antialiasing;
+		menuChar.scrollFactor.set();
+		menuItems.add(menuChar);
+		return menuChar;
 	}
 
 	var selectedSomethin:Bool = false;
@@ -266,10 +268,10 @@ class PlayMenuState extends MusicBeatState
 				selectedSomethin = true;
 				FlxG.mouse.visible = false;
 				FlxG.sound.play(Paths.sound('cancelMenu'));
-				MusicBeatState.switchState(new MainMenuState());
+				MusicBeatState.switchState(new TitleState());
 			}
 
-			if (controls.ACCEPT || (FlxG.mouse.justPressed && allowMouse))
+			if (controls.ACCEPT || (FlxG.mouse.overlaps(menuItems, FlxG.camera) && FlxG.mouse.justPressed && allowMouse))
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				if (optionShit[curSelected] != 'donate')
@@ -303,16 +305,46 @@ class PlayMenuState extends MusicBeatState
 						{
 							case 'extrended_universe':
 								MusicBeatState.switchState(new FreeplayState());
-			                                     	PlayState.isUniverse = true;
+								PlayState.isUniverse = true;
 						    case 'golden':
 								MusicBeatState.switchState(new FreeplayState());
-			                                     	PlayState.isGolden = true;
+								PlayState.isGolden = true;
 							case 'dave_and_bambi':
 								MusicBeatState.switchState(new FreeplayState());
-			                                     	PlayState.isDaveAndBambi = true;
+								PlayState.isDaveAndBambi = true;
 							case 'secret':
 								MusicBeatState.switchState(new FreeplayState());
-			                                     	PlayState.isSecret = true;	
+								PlayState.isSecret = true;
+							case 'play':
+								FlxG.switchState(new PlayMenuState());
+							case 'extras':
+								FlxG.switchState(new ExtrasMenuState());
+							case 'story_mode':
+								MusicBeatState.switchState(new StoryMenuState());
+							case 'freeplay':
+								MusicBeatState.switchState(new FreeplayState());
+
+							#if MODS_ALLOWED
+							case 'mods':
+								MusicBeatState.switchState(new ModsMenuState());
+							#end
+
+							#if ACHIEVEMENTS_ALLOWED
+							case 'achievements':
+								MusicBeatState.switchState(new AchievementsMenuState());
+							#end
+
+							case 'credits':
+								MusicBeatState.switchState(new CreditsState());
+							case 'options':
+								MusicBeatState.switchState(new OptionsState());
+								OptionsState.onPlayState = false;
+								if (PlayState.SONG != null)
+								{
+									PlayState.SONG.arrowSkin = null;
+									PlayState.SONG.splashSkin = null;
+									PlayState.stageUI = 'normal';
+								}
 						}
 					});
 					
@@ -326,15 +358,13 @@ class PlayMenuState extends MusicBeatState
 				}
 				else CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
 			}
-			#if desktop
-			if (controls.justPressed('debug_1'))
+			else if (controls.justPressed('debug_1') || touchPad.buttonE.justPressed)
 			{
 				selectedSomethin = true;
 				FlxG.mouse.visible = false;
 				MusicBeatState.switchState(new FreeplayState());
-			        PlayState.isSecret = true;
+			    PlayState.isSecret = true;
 			}
-			#end
 		}
 
 		super.update(elapsed);
