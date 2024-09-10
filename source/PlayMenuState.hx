@@ -12,7 +12,7 @@ enum PlayMenuColumn {
 	RIGHT;
 }
 
-class PlayMenuState extends MusicBeatState
+class ExtrasMenuColumn extends MusicBeatState
 {
 	public static var psychEngineVersion:String = '1.0-prerelease'; // This is also used for Discord RPC
 	public static var curSelected:Int = 0;
