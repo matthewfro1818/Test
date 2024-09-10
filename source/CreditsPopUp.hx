@@ -51,7 +51,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		}
 		switch (PlayState.storyWeek)
 		{
-			case 0 
+			case 0:
 				headingPath = {path: 'songHeadings/stremblixHeading', antiAliasing: false, iconOffset: 0};
 			case 1:
 				headingPath = {path: 'songHeadings/hazetalHeading', antiAliasing: true, iconOffset: 0};
