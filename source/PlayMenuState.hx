@@ -37,7 +37,6 @@ class PlayMenuState extends MusicBeatState
 	var rightOption:String = 'options';
 
 	var magenta:FlxSprite;
-	var bgMenu:FlxBackdrop;
 	var camFollow:FlxObject;
 
 	var i:Int = null;
@@ -66,10 +65,6 @@ class PlayMenuState extends MusicBeatState
 		bg.updateHitbox();
 		bg.screenCenter();
 		add(bg);
-
-		bgMenu = new FlxBackdrop(Paths.image('mainmenu/grid'), 10, 0, true, true);
-        bgMenu.velocity.set(70, 70); //thats it :D- snake
-		add(bgMenu);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
