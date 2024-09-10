@@ -363,8 +363,8 @@ class PlayMenuState extends MusicBeatState
 			{
 				selectedSomethin = true;
 				FlxG.mouse.visible = false;
-				MusicBeatState.switchState(new FreeplayState());
-			    PlayState.isSecret = true;
+				MusicBeatState.switchState(new states.FreeplayState());
+			        PlayState.isSecret = true;
 			}
 		}
 
