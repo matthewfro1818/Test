@@ -7,9 +7,6 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 jobs:
   Desktop:
     runs-on: ${{matrix.os}}
@@ -33,7 +30,7 @@ jobs:
       - name: Install Libraries
         run: |
           haxelib git hxcpp https://github.com/mcagabe19-stuff/hxcpp --quiet
-          haxelib install lime 8.0.2 --quiet
+          haxelib git lime https://github.com/mcagabe19-stuff/lime --quiet
           haxelib install openfl 9.3.3 --quiet
           haxelib install flixel 5.6.1 --quiet
           haxelib install flixel-addons 3.2.2 --quiet
@@ -108,7 +105,7 @@ jobs:
       - name: Install Libraries
         run: |
           haxelib git hxcpp https://github.com/mcagabe19-stuff/hxcpp --quiet
-          haxelib install lime 8.0.2 --quiet
+          haxelib git lime https://github.com/mcagabe19-stuff/lime --quiet
           haxelib install openfl 9.3.3 --quiet
           haxelib install flixel 5.6.1 --quiet
           haxelib install flixel-addons 3.2.2 --quiet
@@ -120,7 +117,7 @@ jobs:
           haxelib git hxvlc https://github.com/MAJigsaw77/hxvlc 70e7f5f3e76d526ac6fb8f0e6665efe7dfda589d --quiet --skip-dependencies
           haxelib git funkin.vis https://github.com/FunkinCrew/funkVis d5361037efa3a02c4ab20b5bd14ca11e7d00f519 --quiet --skip-dependencies
           haxelib git grig.audio https://gitlab.com/haxe-grig/grig.audio.git cbf91e2180fd2e374924fe74844086aab7891666 --quiet
-          haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools 727693f0a76c6e396df675bb0ed95d7639a4db01 --quiet --skip-dependencies
+          haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools df9dfd0cda74e5460ae3afcfff1081c50959ed4a --quiet --skip-dependencies
 
       - name: Configure Android
         if: startsWith(matrix.os, 'ubuntu')
