@@ -38,6 +38,8 @@ class WeekData {
 	public var difficulties:String;
 	public var fileName:String;
 
+	var fileToCheck:String;
+
 	public static function createWeekFile():WeekFile {
 		var weekFile:WeekFile = {
 			songs: [["Bopeebo", "face", [146, 113, 253]], ["Fresh", "face", [146, 113, 253]], ["Dad Battle", "face", [146, 113, 253]]],
@@ -88,17 +90,16 @@ class WeekData {
 		for (i in 0...sexList.length) {
 			for (j in 0...directories.length) {
 			   if(PlayState.isUniverse)
-				var fileToCheck:String = directories[j] + 'universe-weeks/Universe/' + sexList[i] + '.json';
+				fileToCheck = directories[j] + 'universe-weeks/Universe/' + sexList[i] + '.json';
 			   if(PlayState.isGolden)
-			        var fileToCheck:String = directories[j] + 'universe-weeks/Golden/' + sexList[i] + '.json';
+			        fileToCheck = directories[j] + 'universe-weeks/Golden/' + sexList[i] + '.json';
 			   if(PlayState.isDaveAndBambi)
-				var fileToCheck:String = directories[j] + 'universe-weeks/DaveAndBambi/' + sexList[i] + '.json';
+				fileToCheck = directories[j] + 'universe-weeks/DaveAndBambi/' + sexList[i] + '.json';
 			   if(PlayState.isSecret)
-				var fileToCheck:String = directories[j] + 'universe-weeks/Secret/' + sexList[i] + '.json';
+				fileToCheck = directories[j] + 'universe-weeks/Secret/' + sexList[i] + '.json';
 			   else
-				var fileToCheck:String = directories[j] + 'weeks/' + sexList[i] + '.json';
+				fileToCheck = directories[j] + 'weeks/' + sexList[i] + '.json';
 				if(!weeksLoaded.exists(sexList[i])) {
-				        var fileToCheck:String;
 					var week:WeekFile = getWeekFile(fileToCheck);
 					if(week != null) {
 						var weekFile:WeekData = new WeekData(week, sexList[i]);
