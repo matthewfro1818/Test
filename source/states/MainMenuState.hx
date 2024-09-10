@@ -16,7 +16,7 @@ class MainMenuState extends MusicBeatState
 {
 	public static var psychEngineVersion:String = '1.0-prerelease'; // This is also used for Discord RPC
 	public static var curSelected:Int = 0;
-	public static var curColumn:MainMenuColumn = CENTER;
+	public static var curColumn:MainMenuColumn = LEFT;
 	var allowMouse:Bool = true; //Turn this off to block mouse movement in menus
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
@@ -25,10 +25,9 @@ class MainMenuState extends MusicBeatState
 
 	//Centered/Text options
 	var optionShit:Array<String> = [
-		'story_mode',
-		'freeplay',
-		#if MODS_ALLOWED 'mods', #end
-		'credits'
+		'play',
+		'extras',
+		'options'
 	];
 
 	var leftOption:String = #if ACHIEVEMENTS_ALLOWED 'achievements' #else null #end;
@@ -63,7 +62,6 @@ class MainMenuState extends MusicBeatState
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
 		magenta.antialiasing = ClientPrefs.data.antialiasing;
 		magenta.scrollFactor.set(0, yScroll);
 		magenta.setGraphicSize(Std.int(magenta.width * 1.175));
@@ -121,17 +119,36 @@ class MainMenuState extends MusicBeatState
 
 	function createMenuItem(name:String, x:Float, y:Float):FlxSprite
 	{
-		var menuItem:FlxSprite = new FlxSprite(x, y);
-		menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_$name');
-		menuItem.animation.addByPrefix('idle', '$name idle', 24, true);
-		menuItem.animation.addByPrefix('selected', '$name selected', 24, true);
-		menuItem.animation.play('idle');
+		var menuItem = new FlxSprite().loadGraphic(Paths.image('mainmenu/$name'));
+		menuItem.scale.x = scale;
+		menuItem.scale.y = scale;
+		menuItem.screenCenter(X);
+		menuItems.add(menuItem);
+		var scr:Float = (optionShit.length - 4) * 0.135;
+		if(optionShit.length < 6) scr = 0;
+		menuItem.scrollFactor.set(0, scr);
 		menuItem.updateHitbox();
 		
 		menuItem.antialiasing = ClientPrefs.data.antialiasing;
 		menuItem.scrollFactor.set();
 		menuItems.add(menuItem);
 		return menuItem;
+
+		var menuChar = new FlxSprite().loadGraphic(Paths.image('backgrounds/$name'));
+		menuChar.scale.x = scale;
+		menuChar.scale.y = scale;
+		menuChar.x = 238;
+		menuChar.y = 199;
+		menuChar.screenCenter(X);
+		var scr:Float = (optionShit.length - 4) * 0.135;
+		if(optionShit.length < 6) scr = 0;
+		menuChar.scrollFactor.set(0, scr);
+		menuChar.updateHitbox();
+		
+		menuChar.antialiasing = ClientPrefs.data.antialiasing;
+		menuChar.scrollFactor.set();
+		menuItems.add(menuChar);
+		return menuChar;
 	}
 
 	var selectedSomethin:Bool = false;
@@ -288,6 +305,10 @@ class MainMenuState extends MusicBeatState
 					{
 						switch (option)
 						{
+							case 'play':
+								FlxG.switchState(new PlayMenuState());
+							case 'extras':
+								FlxG.switchState(new ExtrasMenuState());
 							case 'story_mode':
 								MusicBeatState.switchState(new StoryMenuState());
 							case 'freeplay':
