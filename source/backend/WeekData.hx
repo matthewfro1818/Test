@@ -1,5 +1,6 @@
 package backend;
 
+import lime.utils.Assets;
 import openfl.utils.Assets as OpenFlAssets;
 import haxe.Json;
 
@@ -36,9 +37,8 @@ class WeekData {
 	public var hideStoryMode:Bool;
 	public var hideFreeplay:Bool;
 	public var difficulties:String;
-	public var fileName:String;
 
-	var fileToCheck:String;
+	public var fileName:String;
 
 	public static function createWeekFile():WeekFile {
 		var weekFile:WeekFile = {
@@ -89,16 +89,16 @@ class WeekData {
 		var sexList:Array<String> = CoolUtil.coolTextFile(Paths.getSharedPath('weeks/weekList.txt'));
 		for (i in 0...sexList.length) {
 			for (j in 0...directories.length) {
-			   if(PlayState.isUniverse)
-				fileToCheck = directories[j] + 'universe-weeks/Universe/' + sexList[i] + '.json';
-			   if(PlayState.isGolden)
-			        fileToCheck = directories[j] + 'universe-weeks/Golden/' + sexList[i] + '.json';
-			   if(PlayState.isDaveAndBambi)
-				fileToCheck = directories[j] + 'universe-weeks/DaveAndBambi/' + sexList[i] + '.json';
-			   if(PlayState.isSecret)
-				fileToCheck = directories[j] + 'universe-weeks/Secret/' + sexList[i] + '.json';
+			   if((PlayState.isUniverse))
+				var fileToCheck:String = directories[j] + 'universe-weeks/Universe/' + sexList[i] + '.json';
+			   if((PlayState.isGolden))
+				var fileToCheck:String = directories[j] + 'universe-weeks/Golden/' + sexList[i] + '.json';
+			   if((PlayState.isDaveAndBambi))
+				var fileToCheck:String = directories[j] + 'universe-weeks/DaveAndBambi/' + sexList[i] + '.json';
+			   if((PlayState.isSecret))
+				var fileToCheck:String = directories[j] + 'universe-weeks/Secret/' + sexList[i] + '.json';
 			   else
-				fileToCheck = directories[j] + 'weeks/' + sexList[i] + '.json';
+				var fileToCheck:String = directories[j] + 'weeks/' + sexList[i] + '.json';
 				if(!weeksLoaded.exists(sexList[i])) {
 					var week:WeekFile = getWeekFile(fileToCheck);
 					if(week != null) {
@@ -177,7 +177,7 @@ class WeekData {
 		}
 		#else
 		if(OpenFlAssets.exists(path)) {
-			rawJson = OpenFlAssets.getText(path);
+			rawJson = Assets.getText(path);
 		}
 		#end
 
