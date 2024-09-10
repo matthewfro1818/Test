@@ -92,13 +92,13 @@ class WeekData {
 		for (i in 0...sexList.length) {
 			for (j in 0...directories.length) {
 			   if((PlayState.isUniverse))
-				fileToCheck:String = directories[j] + 'universe-weeks/Universe/' + sexList[i] + '.json';
+				fileToCheck = directories[j] + 'universe-weeks/Universe/' + sexList[i] + '.json';
 			   if((PlayState.isGolden))
-			        fileToCheck:String = directories[j] + 'universe-weeks/Golden/' + sexList[i] + '.json';
+			        fileToCheck = directories[j] + 'universe-weeks/Golden/' + sexList[i] + '.json';
 			   if((PlayState.isDaveAndBambi))
-			        fileToCheck:String = directories[j] + 'universe-weeks/DaveAndBambi/' + sexList[i] + '.json';
+			        fileToCheck = directories[j] + 'universe-weeks/DaveAndBambi/' + sexList[i] + '.json';
 			   if((PlayState.isSecret))
-				fileToCheck:String = directories[j] + 'universe-weeks/Secret/' + sexList[i] + '.json';
+				fileToCheck = directories[j] + 'universe-weeks/Secret/' + sexList[i] + '.json';
 			   else
 				var fileToCheck:String = directories[j] + 'weeks/' + sexList[i] + '.json';
 				if(!weeksLoaded.exists(sexList[i])) {
