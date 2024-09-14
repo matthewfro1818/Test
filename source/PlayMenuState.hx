@@ -129,7 +129,6 @@ class PlayMenuState extends MusicBeatState
 		extrendedbutton.scrollFactor.set(0, scr);
 		extrendedbutton.setGraphicSize(Std.int(bg.width * 0.9));
 		extrendedbutton.flipX = false; //You should have already animated it in the right position in Animate
-		extrendedbutton.antialiasing =ClientPrefs.globalAntialiasing;
 		menuItems.add(extrendedbutton);
 
 		var goldenbutton = new FlxSprite(912, 462).loadGraphic(Paths.image('mainmenu/golden'));//Thanks to EIT for the tutorial
@@ -138,7 +137,6 @@ class PlayMenuState extends MusicBeatState
 		goldenbutton.scrollFactor.set(0, scr);
 		goldenbutton.setGraphicSize(Std.int(bg.width * 0.9));
 		goldenbutton.flipX = false; //You should have already animated it in the right position in Animate
-		goldenbutton.antialiasing =ClientPrefs.globalAntialiasing;
 		menuItems.add(goldenbutton);
 
 		var daveandbambibutton = new FlxSprite(912, 662).loadGraphic(Paths.image('mainmenu/daveandbambi'));//Thanks to EIT for the tutorial
@@ -147,7 +145,6 @@ class PlayMenuState extends MusicBeatState
 		daveandbambibutton.scrollFactor.set(0, scr);
 		daveandbambibutton.setGraphicSize(Std.int(bg.width * 0.9));
 		daveandbambibutton.flipX = false; //You should have already animated it in the right position in Animate
-		daveandbambibutton.antialiasing =ClientPrefs.globalAntialiasing;
 		menuItems.add(daveandbambibutton);
 	}
 
