@@ -146,7 +146,7 @@ class ExtrasMenuState extends MusicBeatState
 		creditsbutton.flipX = false; //You should have already animated it in the right position in Animate
 		menuItems.add(creditsbutton);
 		
-		char = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));//Thanks to EIT for the tutorial
+		var char = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));//Thanks to EIT for the tutorial
 		char.scrollFactor.set();
 		char.flipX = false; //You should have already animated it in the right position in Animate
 		add(char);
