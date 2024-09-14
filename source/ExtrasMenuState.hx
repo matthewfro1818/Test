@@ -22,6 +22,7 @@ class ExtrasMenuState extends MusicBeatState
 	var allowMouse:Bool = true; //Turn this off to block mouse movement in menus
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
+	var char:FlxSprite;
 	var leftItem:FlxSprite;
 	var rightItem:FlxSprite;
 
@@ -70,7 +71,7 @@ class ExtrasMenuState extends MusicBeatState
 		magenta.screenCenter();
 		add(magenta);
 
-		var magenta2 = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/uhhh'));
+		var magenta2 = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/thing'));
 		magenta2.scrollFactor.set(0, yScroll);
 		magenta2.updateHitbox();
 		magenta2.screenCenter();
@@ -124,31 +125,35 @@ class ExtrasMenuState extends MusicBeatState
 
 	function createMenuItem(name:String, x:Float, y:Float):FlxSprite
 	{
-		var menuItem = new FlxSprite().loadGraphic(Paths.image('mainmenu/$name'));
-		menuItems.add(menuItem);
+		var modsbutton = new FlxSprite(269, 241).loadGraphic(Paths.image('mainmenu/mods'));//Thanks to EIT for the tutorial
 		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
-		menuItem.scrollFactor.set(0, scr);
-		menuItem.updateHitbox();
-		
-		menuItem.antialiasing = ClientPrefs.data.antialiasing;
-		menuItem.scrollFactor.set();
-		menuItems.add(menuItem);
-		return menuItem;
+		modsbutton.scrollFactor.set(0, scr);
+		modsbutton.flipX = false; //You should have already animated it in the right position in Animate
+		modsbutton.antialiasing =ClientPrefs.globalAntialiasing;
+		menuItems.add(modsbutton);
 
-		var menuChar = new FlxSprite().loadGraphic(Paths.image('backgrounds/$name'));
-		menuChar.x = 238;
-		menuChar.y = 199;
-		menuChar.screenCenter(X);
+		var discordbutton = new FlxSprite(269, 482).loadGraphic(Paths.image('mainmenu/discord'));//Thanks to EIT for the tutorial
 		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
-		menuChar.scrollFactor.set(0, scr);
-		menuChar.updateHitbox();
+		discordbutton.scrollFactor.set(0, scr);
+		discordbutton.flipX = false; //You should have already animated it in the right position in Animate
+		discordbutton.antialiasing =ClientPrefs.globalAntialiasing;
+		menuItems.add(discordbutton);
+
+		var creditsbutton = new FlxSprite(269, 702).loadGraphic(Paths.image('mainmenu/credits'));//Thanks to EIT for the tutorial
+		var scr:Float = (optionShit.length - 4) * 0.135;
+		if(optionShit.length < 6) scr = 0;
+		creditsbutton.scrollFactor.set(0, scr);
+		creditsbutton.flipX = false; //You should have already animated it in the right position in Animate
+		creditsbutton.antialiasing =ClientPrefs.globalAntialiasing;
+		menuItems.add(creditsbutton);
 		
-		menuChar.antialiasing = ClientPrefs.data.antialiasing;
-		menuChar.scrollFactor.set();
-		menuItems.add(menuChar);
-		return menuChar;
+		char = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));//Thanks to EIT for the tutorial
+		char.scrollFactor.set();
+		char.flipX = false; //You should have already animated it in the right position in Animate
+		char.antialiasing =ClientPrefs.globalAntialiasing;
+		add(char);
 	}
 
 	var selectedSomethin:Bool = false;
