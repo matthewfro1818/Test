@@ -69,7 +69,7 @@ class PlayMenuState extends MusicBeatState
 		magenta.screenCenter();
 		add(magenta);
 
-		var magenta2 = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/thing'));
+		var magenta2 = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/uhhh'));
 		magenta2.scrollFactor.set(0, yScroll);
 		magenta2.updateHitbox();
 		magenta2.screenCenter();
@@ -123,29 +123,32 @@ class PlayMenuState extends MusicBeatState
 
 	function createMenuItem(name:String, x:Float, y:Float):FlxSprite
 	{
-		var menuItem = new FlxSprite().loadGraphic(Paths.image('mainmenu/$name'));
-		menuItem.screenCenter(X);
-		menuItems.add(menuItem);
+		var extrendedbutton = new FlxSprite(912, 257).loadGraphic(Paths.image('mainmenu/extrended'));//Thanks to EIT for the tutorial
 		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
-		menuItem.scrollFactor.set(0, scr);
-		menuItem.updateHitbox();
-		
-		menuItem.antialiasing = ClientPrefs.data.antialiasing;
-		menuItem.scrollFactor.set();
-		menuItems.add(menuItem);
-		return menuItem;
+		extrendedbutton.scrollFactor.set(0, scr);
+		extrendedbutton.setGraphicSize(Std.int(bg.width * 0.9));
+		extrendedbutton.flipX = false; //You should have already animated it in the right position in Animate
+		extrendedbutton.antialiasing =ClientPrefs.globalAntialiasing;
+		menuItems.add(extrendedbutton);
 
-		var menuChar = new FlxSprite().loadGraphic(Paths.image('backgrounds/$name'));
-		menuChar.screenCenter(X);
+		var goldenbutton = new FlxSprite(912, 462).loadGraphic(Paths.image('mainmenu/golden'));//Thanks to EIT for the tutorial
+		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
-		menuChar.scrollFactor.set(0, scr);
-		menuChar.updateHitbox();
-		
-		menuChar.antialiasing = ClientPrefs.data.antialiasing;
-		menuChar.scrollFactor.set();
-		menuItems.add(menuChar);
-		return menuChar;
+		goldenbutton.scrollFactor.set(0, scr);
+		goldenbutton.setGraphicSize(Std.int(bg.width * 0.9));
+		goldenbutton.flipX = false; //You should have already animated it in the right position in Animate
+		goldenbutton.antialiasing =ClientPrefs.globalAntialiasing;
+		menuItems.add(goldenbutton);
+
+		var daveandbambibutton = new FlxSprite(912, 662).loadGraphic(Paths.image('mainmenu/daveandbambi'));//Thanks to EIT for the tutorial
+		var scr:Float = (optionShit.length - 4) * 0.135;
+		if(optionShit.length < 6) scr = 0;
+		daveandbambibutton.scrollFactor.set(0, scr);
+		daveandbambibutton.setGraphicSize(Std.int(bg.width * 0.9));
+		daveandbambibutton.flipX = false; //You should have already animated it in the right position in Animate
+		daveandbambibutton.antialiasing =ClientPrefs.globalAntialiasing;
+		menuItems.add(daveandbambibutton);
 	}
 
 	var selectedSomethin:Bool = false;
