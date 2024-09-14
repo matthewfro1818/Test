@@ -143,13 +143,12 @@ class MainMenuState extends MusicBeatState
 		optionsbutton.flipX = false; //You should have already animated it in the right position in Animate
 		menuItems.add(optionsbutton);
 		
-		
 	        var char = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));//Thanks to EIT for the tutorial
 		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
 		char.scrollFactor.set(0, scr);
 		char.flipX = false; //You should have already animated it in the right position in Animate
-		add(char);
+		menuItems.add(char);
 	}
 
 	var selectedSomethin:Bool = false;
