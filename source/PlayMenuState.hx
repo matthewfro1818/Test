@@ -144,7 +144,7 @@ class PlayMenuState extends MusicBeatState
 		if(optionShit.length < 6) scr = 0;
 		daveandbambibutton.scrollFactor.set(0, scr);
 		daveandbambibutton.setGraphicSize(Std.int(daveandbambibutton.width * 0.9));
-		daveandbambibutton.flipX = false; //You should have already animated it in the right position in Animate
+		daveandbambinbutton.flipX = false; //You should have already animated it in the right position in Animate
 		menuItems.add(daveandbambibutton);
 	}
 
