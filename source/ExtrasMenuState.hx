@@ -130,7 +130,6 @@ class ExtrasMenuState extends MusicBeatState
 		if(optionShit.length < 6) scr = 0;
 		modsbutton.scrollFactor.set(0, scr);
 		modsbutton.flipX = false; //You should have already animated it in the right position in Animate
-		modsbutton.antialiasing =ClientPrefs.globalAntialiasing;
 		menuItems.add(modsbutton);
 
 		var discordbutton = new FlxSprite(269, 482).loadGraphic(Paths.image('mainmenu/discord'));//Thanks to EIT for the tutorial
@@ -138,7 +137,6 @@ class ExtrasMenuState extends MusicBeatState
 		if(optionShit.length < 6) scr = 0;
 		discordbutton.scrollFactor.set(0, scr);
 		discordbutton.flipX = false; //You should have already animated it in the right position in Animate
-		discordbutton.antialiasing =ClientPrefs.globalAntialiasing;
 		menuItems.add(discordbutton);
 
 		var creditsbutton = new FlxSprite(269, 702).loadGraphic(Paths.image('mainmenu/credits'));//Thanks to EIT for the tutorial
@@ -146,13 +144,11 @@ class ExtrasMenuState extends MusicBeatState
 		if(optionShit.length < 6) scr = 0;
 		creditsbutton.scrollFactor.set(0, scr);
 		creditsbutton.flipX = false; //You should have already animated it in the right position in Animate
-		creditsbutton.antialiasing =ClientPrefs.globalAntialiasing;
 		menuItems.add(creditsbutton);
 		
 		char = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));//Thanks to EIT for the tutorial
 		char.scrollFactor.set();
 		char.flipX = false; //You should have already animated it in the right position in Animate
-		char.antialiasing =ClientPrefs.globalAntialiasing;
 		add(char);
 	}
 
