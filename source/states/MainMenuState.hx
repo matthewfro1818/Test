@@ -21,6 +21,7 @@ class MainMenuState extends MusicBeatState
 	var allowMouse:Bool = true; //Turn this off to block mouse movement in menus
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
+	var char:FlxSprite;
 	var leftItem:FlxSprite;
 	var rightItem:FlxSprite;
 
@@ -55,7 +56,6 @@ class MainMenuState extends MusicBeatState
 		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/space'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.scrollFactor.set(0, yScroll);
-		bg.setGraphicSize(Std.int(bg.width * 1.175));
 		bg.updateHitbox();
 		bg.screenCenter();
 		add(bg);
@@ -63,13 +63,13 @@ class MainMenuState extends MusicBeatState
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		magenta = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/space'));
+		magenta = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/space'));
 		magenta.scrollFactor.set(0, yScroll);
 		magenta.updateHitbox();
 		magenta.screenCenter();
 		add(magenta);
 
-		var magenta2 = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/uhhh'));
+		var magenta2 = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/thing'));
 		magenta2.scrollFactor.set(0, yScroll);
 		magenta2.updateHitbox();
 		magenta2.screenCenter();
@@ -123,31 +123,35 @@ class MainMenuState extends MusicBeatState
 
 	function createMenuItem(name:String, x:Float, y:Float):FlxSprite
 	{
-		var menuItem = new FlxSprite().loadGraphic(Paths.image('mainmenu/$name'));
-		menuItems.add(menuItem);
+		var playbutton = new FlxSprite(269, 241).loadGraphic(Paths.image('mainmenu/play'));//Thanks to EIT for the tutorial
 		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
-		menuItem.scrollFactor.set(0, scr);
-		menuItem.updateHitbox();
-		
-		menuItem.antialiasing = ClientPrefs.data.antialiasing;
-		menuItem.scrollFactor.set();
-		menuItems.add(menuItem);
-		return menuItem;
+		playbutton.scrollFactor.set(0, scr);
+		playbutton.flipX = false; //You should have already animated it in the right position in Animate
+		playbutton.antialiasing =ClientPrefs.globalAntialiasing;
+		menuItems.add(playbutton);
 
-		var menuChar = new FlxSprite().loadGraphic(Paths.image('backgrounds/$name'));
-		menuChar.x = 238;
-		menuChar.y = 199;
-		menuChar.screenCenter(X);
+		var extrasbutton = new FlxSprite(269, 482).loadGraphic(Paths.image('mainmenu/extras'));//Thanks to EIT for the tutorial
 		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
-		menuChar.scrollFactor.set(0, scr);
-		menuChar.updateHitbox();
+		extrasbutton.scrollFactor.set(0, scr);
+		extrasbutton.flipX = false; //You should have already animated it in the right position in Animate
+		extrasbutton.antialiasing =ClientPrefs.globalAntialiasing;
+		menuItems.add(extrasbutton);
+
+		var optionsbutton = new FlxSprite(269, 702).loadGraphic(Paths.image('mainmenu/options'));//Thanks to EIT for the tutorial
+		var scr:Float = (optionShit.length - 4) * 0.135;
+		if(optionShit.length < 6) scr = 0;
+		optionsbutton.scrollFactor.set(0, scr);
+		optionsbutton.flipX = false; //You should have already animated it in the right position in Animate
+		optionsbutton.antialiasing =ClientPrefs.globalAntialiasing;
+		menuItems.add(optionsbutton);
 		
-		menuChar.antialiasing = ClientPrefs.data.antialiasing;
-		menuChar.scrollFactor.set();
-		menuItems.add(menuChar);
-		return menuChar;
+		char = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));//Thanks to EIT for the tutorial
+		char.scrollFactor.set();
+		char.flipX = false; //You should have already animated it in the right position in Animate
+		char.antialiasing =ClientPrefs.globalAntialiasing;
+		add(char);
 	}
 
 	var selectedSomethin:Bool = false;
