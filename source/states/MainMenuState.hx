@@ -128,7 +128,6 @@ class MainMenuState extends MusicBeatState
 		if(optionShit.length < 6) scr = 0;
 		playbutton.scrollFactor.set(0, scr);
 		playbutton.flipX = false; //You should have already animated it in the right position in Animate
-		playbutton.antialiasing =ClientPrefs.globalAntialiasing;
 		menuItems.add(playbutton);
 
 		var extrasbutton = new FlxSprite(269, 482).loadGraphic(Paths.image('mainmenu/extras'));//Thanks to EIT for the tutorial
@@ -136,7 +135,6 @@ class MainMenuState extends MusicBeatState
 		if(optionShit.length < 6) scr = 0;
 		extrasbutton.scrollFactor.set(0, scr);
 		extrasbutton.flipX = false; //You should have already animated it in the right position in Animate
-		extrasbutton.antialiasing =ClientPrefs.globalAntialiasing;
 		menuItems.add(extrasbutton);
 
 		var optionsbutton = new FlxSprite(269, 702).loadGraphic(Paths.image('mainmenu/options'));//Thanks to EIT for the tutorial
@@ -144,13 +142,11 @@ class MainMenuState extends MusicBeatState
 		if(optionShit.length < 6) scr = 0;
 		optionsbutton.scrollFactor.set(0, scr);
 		optionsbutton.flipX = false; //You should have already animated it in the right position in Animate
-		optionsbutton.antialiasing =ClientPrefs.globalAntialiasing;
 		menuItems.add(optionsbutton);
 		
 		char = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));//Thanks to EIT for the tutorial
 		char.scrollFactor.set();
 		char.flipX = false; //You should have already animated it in the right position in Animate
-		char.antialiasing =ClientPrefs.globalAntialiasing;
 		add(char);
 	}
 
