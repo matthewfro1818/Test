@@ -133,20 +133,18 @@ class PlayMenuState extends MusicBeatState
 		menuItems.add(extrendedbutton);
 
 		var goldenbutton = new FlxSprite(912, 462).loadGraphic(Paths.image('mainmenu/golden')); //Thanks to EIT for the tutorial
-		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
 		goldenbutton.scrollFactor.set(0, scr);
 		goldenbutton.setGraphicSize(Std.int(goldenbutton.width * 0.9));
 		goldenbutton.flipX = false; //You should have already animated it in the right position in Animate
 		menuItems.add(goldenbutton);
 
-		var daveandbambibutton = new FlxSprite(912, 662).loadGraphic(Paths.image('mainmenu/daveandbambi')); //Thanks to EIT for the tutorial
-		var scr:Float = (optionShit.length - 4) * 0.135;
+		var daveandbambibuttonbutton = new FlxSprite(912, 462).loadGraphic(Paths.image('mainmenu/daveandbambibutton')); //Thanks to EIT for the tutorial
 		if(optionShit.length < 6) scr = 0;
-		daveandbambibutton.scrollFactor.set(0, scr);
-		daveandbambibutton.setGraphicSize(Std.int(daveandbambibutton.width * 0.9));
-		daveandbambibutton.flipX = false; //You should have already animated it in the right position in Animate
-		menuItems.add(daveandbambibutton);
+		daveandbambibuttonbutton.scrollFactor.set(0, scr);
+		daveandbambibuttonbutton.setGraphicSize(Std.int(daveandbambibuttonbutton.width * 0.9));
+		daveandbambibuttonbutton.flipX = false; //You should have already animated it in the right position in Animate
+		menuItems.add(daveandbambibuttonbutton);
 	}
 
 	var selectedSomethin:Bool = false;
