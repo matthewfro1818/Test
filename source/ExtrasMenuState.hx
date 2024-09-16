@@ -154,7 +154,7 @@ class ExtrasMenuState extends MusicBeatState
 		char.flipX = false; //You should have already animated it in the right position in Animate
 		menuItems.add(char);
 
-		return: flixel.FlxSprite;
+		return flixel.FlxSprite;
 	}
 
 	var selectedSomethin:Bool = false;
