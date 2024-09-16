@@ -148,7 +148,7 @@ class PlayMenuState extends MusicBeatState
 		daveandbambibutton.flipX = false; //You should have already animated it in the right position in Animate
 		menuItems.add(daveandbambibutton);
 
-		return: flixel.FlxSprite;
+		return flixel.FlxSprite;
 	}
 
 	var selectedSomethin:Bool = false;
