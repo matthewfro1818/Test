@@ -147,8 +147,8 @@ class PlayMenuState extends MusicBeatState
 		daveandbambibutton.setGraphicSize(Std.int(daveandbambibutton.width * 0.9));
 		daveandbambibutton.flipX = false; //You should have already animated it in the right position in Animate
 		menuItems.add(daveandbambibutton);
-		
-		return: flixel.FlxSprite
+
+		return: flixel.FlxSprite;
 	}
 
 	var selectedSomethin:Bool = false;
