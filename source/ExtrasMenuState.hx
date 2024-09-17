@@ -126,7 +126,7 @@ class ExtrasMenuState extends MusicBeatState
 
 	function createMenuItem(name:String, x:Float, y:Float):FlxSprite
 	{
-	 switch (option)
+	 switch (optionShit)
 	 {
 	     case 'mods':
 		var modsbutton = new FlxSprite(269, 241).loadGraphic(Paths.image('mainmenu/mods'));//Thanks to EIT for the tutorial
