@@ -124,6 +124,9 @@ class MainMenuState extends MusicBeatState
 
 	function createMenuItem(name:String, x:Float, y:Float):FlxSprite
 	{
+	  switch (option)
+	  {
+	    case 'play':
 		var playbutton = new FlxSprite(269, 241).loadGraphic(Paths.image('mainmenu/play')); //Thanks to EIT for the tutorial
 		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
@@ -131,6 +134,7 @@ class MainMenuState extends MusicBeatState
 		playbutton.flipX = false; //You should have already animated it in the right position in Animate
 		menuItems.add(playbutton);
 
+	    case 'extras':
 		var extrasbutton = new FlxSprite(269, 482).loadGraphic(Paths.image('mainmenu/extras')); //Thanks to EIT for the tutorial
 		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
@@ -138,12 +142,14 @@ class MainMenuState extends MusicBeatState
 		extrasbutton.flipX = false; //You should have already animated it in the right position in Animate
 		menuItems.add(extrasbutton);
 
+	    case 'options':
 		var optionsbutton = new FlxSprite(269, 702).loadGraphic(Paths.image('mainmenu/options')); //Thanks to EIT for the tutorial
 		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
 		optionsbutton.scrollFactor.set(0, scr);
 		optionsbutton.flipX = false; //You should have already animated it in the right position in Animate
-		menuItems.add(optionsbutton);
+		menuItems.add(optionsbutton);\
+	  }
 
 		var menuCharacter:FlxSprite = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));
 		menuCharacter.scrollFactor.set(0, 0);
