@@ -124,7 +124,7 @@ class PlayMenuState extends MusicBeatState
 
 	function createMenuItem(name:String, x:Float, y:Float):FlxSprite
 	{
-	   switch (option)
+	   switch (optionShit)
 	   {
 	    case 'extrended':
 		var extrendedbutton = new FlxSprite(912, 257).loadGraphic(Paths.image('mainmenu/extrended')); //Thanks to EIT for the tutorial
