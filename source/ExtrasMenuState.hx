@@ -129,28 +129,22 @@ class ExtrasMenuState extends MusicBeatState
 	 switch (optionShit)
 	 {
 	     case 'mods':
-		var modsbutton = new FlxSprite(269, 241).loadGraphic(Paths.image('mainmenu/mods'));//Thanks to EIT for the tutorial
-		var scr:Float = (optionShit.length - 4) * 0.135;
-		if(optionShit.length < 6) scr = 0;
-		modsbutton.scrollFactor.set(0, scr);
+		var modsbutton = new FlxSprite(269, 241).loadGraphic(Paths.image('mainmenu/mods'));//Thanks to EIT for the tutoria
+		modsbutton.scrollFactor.set(0, 0);
 		modsbutton.flipX = false; //You should have already animated it in the right position in Animate
-		menuItems.add(modsbutton);
+		add(modsbutton);
 
 	     case 'discord':
 		var discordbutton = new FlxSprite(269, 482).loadGraphic(Paths.image('mainmenu/discord'));//Thanks to EIT for the tutorial
-		var scr:Float = (optionShit.length - 4) * 0.135;
-		if(optionShit.length < 6) scr = 0;
-		discordbutton.scrollFactor.set(0, scr);
+		discordbutton.scrollFactor.set(0, 0);
 		discordbutton.flipX = false; //You should have already animated it in the right position in Animate
-		menuItems.add(discordbutton);
+		add(discordbutton);
 
 	     case 'credits':
 		var creditsbutton = new FlxSprite(269, 702).loadGraphic(Paths.image('mainmenu/credits'));//Thanks to EIT for the tutorial
-		var scr:Float = (optionShit.length - 4) * 0.135;
-		if(optionShit.length < 6) scr = 0;
-		creditsbutton.scrollFactor.set(0, scr);
+		creditsbutton.scrollFactor.set(0, 0);
 		creditsbutton.flipX = false; //You should have already animated it in the right position in Animate
-		menuItems.add(creditsbutton);
+		add(creditsbutton);
 	 }
 		var menuCharacter:FlxSprite = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));
 		menuCharacter.scrollFactor.set(0, 0);
