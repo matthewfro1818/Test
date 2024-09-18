@@ -124,29 +124,23 @@ class PlayMenuState extends MusicBeatState
 
 	function createMenuItem(name:String, x:Float, y:Float):FlxSprite
 	{
-	   switch (optionShit)
-	   {
-	    case 'extrended':
 		var extrendedbutton = new FlxSprite(912, 257).loadGraphic(Paths.image('mainmenu/extrended')); //Thanks to EIT for the tutorial
 		extrendedbutton.scrollFactor.set(0, 0);
 		extrendedbutton.setGraphicSize(Std.int(extrendedbutton.width * 0.9));
 		extrendedbutton.flipX = false; //You should have already animated it in the right position in Animate
-		menuItems.add(extrendedbutton);
+		add(extrendedbutton);
 
-	    case 'golden':
 		var goldenbutton = new FlxSprite(912, 462).loadGraphic(Paths.image('mainmenu/golden')); //Thanks to EIT for the tutorial
 		goldenbutton.scrollFactor.set(0, 0);
 		goldenbutton.setGraphicSize(Std.int(goldenbutton.width * 0.9));
 		goldenbutton.flipX = false; //You should have already animated it in the right position in Animate
-		menuItems.add(goldenbutton);
+		add(goldenbutton);
 						
-	    case 'daveandbambi':
 		var daveandbambibuttonbutton = new FlxSprite(912, 462).loadGraphic(Paths.image('mainmenu/daveandbambibutton')); //Thanks to EIT for the tutorial
 		daveandbambibuttonbutton.scrollFactor.set(0, 0);
 		daveandbambibuttonbutton.setGraphicSize(Std.int(daveandbambibuttonbutton.width * 0.9));
 		daveandbambibuttonbutton.flipX = false; //You should have already animated it in the right position in Animate
-		menuItems.add(daveandbambibuttonbutton);
-	   }
+		add(daveandbambibuttonbutton);
 	}
 
 	var selectedSomethin:Bool = false;
