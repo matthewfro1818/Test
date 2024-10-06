@@ -126,17 +126,17 @@ class ExtrasMenuState extends MusicBeatState
 
 	function createMenuItem(name:String, x:Float, y:Float):FlxSprite
 	{
-		var modsbutton = new FlxSprite(269, 241).loadGraphic(Paths.image('mainmenu/mods'));//Thanks to EIT for the tutoria
+		var modsbutton:FlxSprite = new FlxSprite(269, 241).loadGraphic(Paths.image('mainmenu/mods'));//Thanks to EIT for the tutoria
 		modsbutton.scrollFactor.set(0, 0);
 		modsbutton.flipX = false; //You should have already animated it in the right position in Animate
 		add(modsbutton);
 
-		var discordbutton = new FlxSprite(269, 482).loadGraphic(Paths.image('mainmenu/discord'));//Thanks to EIT for the tutorial
+		var discordbutton:FlxSprite = new FlxSprite(269, 482).loadGraphic(Paths.image('mainmenu/discord'));//Thanks to EIT for the tutorial
 		discordbutton.scrollFactor.set(0, 0);
 		discordbutton.flipX = false; //You should have already animated it in the right position in Animate
 		add(discordbutton);
 
-		var creditsbutton = new FlxSprite(269, 702).loadGraphic(Paths.image('mainmenu/credits'));//Thanks to EIT for the tutorial
+		var creditsbutton:FlxSprite = new FlxSprite(269, 702).loadGraphic(Paths.image('mainmenu/credits'));//Thanks to EIT for the tutorial
 		creditsbutton.scrollFactor.set(0, 0);
 		creditsbutton.flipX = false; //You should have already animated it in the right position in Animate
 		add(creditsbutton);
