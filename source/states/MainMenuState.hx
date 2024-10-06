@@ -39,6 +39,8 @@ class MainMenuState extends MusicBeatState
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 
+	var menuCharacter:FlxSprite;
+
 	override function create()
 	{
 		#if MODS_ALLOWED
@@ -145,7 +147,7 @@ class MainMenuState extends MusicBeatState
 		optionsbutton.flipX = false; //You should have already animated it in the right position in Animate
 		add(optionsbutton);
 
-		var menuCharacter:FlxSprite = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));
+		menuCharacter:FlxSprite = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));
 		menuCharacter.scrollFactor.set(0, 0);
 		add(menuCharacter);
 	}
