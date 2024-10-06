@@ -136,7 +136,7 @@ class PlayMenuState extends MusicBeatState
 		goldenbutton.flipX = false; //You should have already animated it in the right position in Animate
 		add(goldenbutton);
 						
-		var daveandbambibuttonbutton = new FlxSprite(912, 462).loadGraphic(Paths.image('mainmenu/daveandbambibutton')); //Thanks to EIT for the tutorial
+		var davbambutton = new FlxSprite(912, 462).loadGraphic(Paths.image('mainmenu/daveandbambibutton')); //Thanks to EIT for the tutorial
 		daveandbambibuttonbutton.scrollFactor.set(0, 0);
 		daveandbambibuttonbutton.setGraphicSize(Std.int(daveandbambibuttonbutton.width * 0.9));
 		daveandbambibuttonbutton.flipX = false; //You should have already animated it in the right position in Animate
