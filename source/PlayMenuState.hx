@@ -1,12 +1,10 @@
 package;
 
 import flixel.FlxObject;
-import flixel.FlxSprite;
 import flixel.effects.FlxFlicker;
 import lime.app.Application;
 import states.editors.MasterEditorMenu;
 import options.OptionsState;
-import backend.MusicBeatState;
 
 enum PlayMenuColumn {
 	LEFT;
@@ -16,9 +14,9 @@ enum PlayMenuColumn {
 
 class PlayMenuState extends MusicBeatState
 {
-	public static var psychEngineVersion:String = '1.0-prerelease'; // This is also used for Discord RPC
+	public static var psychEngineVersion:String = '1.0'; // This is also used for Discord RPC
 	public static var curSelected:Int = 0;
-	public static var curColumn:PlayMenuColumn = LEFT;
+	public static var curColumn:PlayMenuColumn = CENTER;
 	var allowMouse:Bool = true; //Turn this off to block mouse movement in menus
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
@@ -27,7 +25,7 @@ class PlayMenuState extends MusicBeatState
 
 	//Centered/Text options
 	var optionShit:Array<String> = [
-         	'extrended',
+        'extrended',
 		'golden',
 		'daveandbambi'
 	];
@@ -61,20 +59,16 @@ class PlayMenuState extends MusicBeatState
 		bg.screenCenter();
 		add(bg);
 
+		var bg2:FlxSprite = new FlxSprite((-80).loadGraphic(Paths.image(‎'backgrounds/thing'‎));
+		bg2.antialiasing = ClientPrefs.data.antialiasing;
+		bg2.scrollFactor.set(0, yScroll);
+		bg2.setGraphicSize(Std.int(bg2.width * 1.175));
+		bg2.updateHitbox();
+		bg2.screenCenter();
+		add(bg2);
+
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
-
-		magenta = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/space'));
-		magenta.scrollFactor.set(0, yScroll);
-		magenta.updateHitbox();
-		magenta.screenCenter();
-		add(magenta);
-
-		var magenta2 = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/uhhh'));
-		magenta2.scrollFactor.set(0, yScroll);
-		magenta2.updateHitbox();
-		magenta2.screenCenter();
-		add(magenta2);
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
@@ -96,11 +90,11 @@ class PlayMenuState extends MusicBeatState
 
 		var psychVer:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		psychVer.scrollFactor.set();
-		psychVer.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		psychVer.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(psychVer);
 		var fnfVer:FlxText = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
 		fnfVer.scrollFactor.set();
-		fnfVer.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		fnfVer.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(fnfVer);
 		changeItem();
 
@@ -115,8 +109,6 @@ class PlayMenuState extends MusicBeatState
 		#end
 		#end
 
-		addTouchPad('NONE', 'E');
-
 		super.create();
 
 		FlxG.camera.follow(camFollow, null, 0.15);
@@ -128,19 +120,19 @@ class PlayMenuState extends MusicBeatState
 		extrendedbutton.scrollFactor.set(0, 0);
 		extrendedbutton.setGraphicSize(Std.int(extrendedbutton.width * 0.9));
 		extrendedbutton.flipX = false; //You should have already animated it in the right position in Animate
-		add(extrendedbutton);
+		menuItems.add(extrendedbutton);
 
 		var goldenbutton:FlxSprite = new FlxSprite(912, 462).loadGraphic(Paths.image('mainmenu/golden')); //Thanks to EIT for the tutorial
 		goldenbutton.scrollFactor.set(0, 0);
 		goldenbutton.setGraphicSize(Std.int(goldenbutton.width * 0.9));
 		goldenbutton.flipX = false; //You should have already animated it in the right position in Animate
-		add(goldenbutton);
+		menuItems.add(goldenbutton);
 						
 		var davbambutton:FlxSprite = new FlxSprite(912, 462).loadGraphic(Paths.image('mainmenu/daveandbambibutton')); //Thanks to EIT for the tutorial
 		davbambutton.scrollFactor.set(0, 0);
 		davbambutton.setGraphicSize(Std.int(davbambutton.width * 0.9));
 		davbambutton.flipX = false; //You should have already animated it in the right position in Animate
-		add(davbambutton);
+		menuItems.add(davbambutton);
 	}
 
 	var selectedSomethin:Bool = false;
@@ -262,10 +254,10 @@ class PlayMenuState extends MusicBeatState
 				selectedSomethin = true;
 				FlxG.mouse.visible = false;
 				FlxG.sound.play(Paths.sound('cancelMenu'));
-				MusicBeatState.switchState(new states.MainMenuState());
+				MusicBeatState.switchState(new TitleState());
 			}
 
-			if (controls.ACCEPT || (FlxG.mouse.overlaps(menuItems, FlxG.camera) && FlxG.mouse.justPressed && allowMouse))
+			if (controls.ACCEPT || (FlxG.mouse.justPressed && allowMouse))
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				if (optionShit[curSelected] != 'donate')
@@ -300,7 +292,7 @@ class PlayMenuState extends MusicBeatState
 							case 'extrended':
 								MusicBeatState.switchState(new states.FreeplayState());
 								PlayState.isUniverse = true;
-						        case 'golden':
+						    case 'golden':
 								MusicBeatState.switchState(new states.FreeplayState());
 								PlayState.isGolden = true;
 							case 'daveandbambi':
@@ -319,13 +311,14 @@ class PlayMenuState extends MusicBeatState
 				}
 				else CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
 			}
-			else if (controls.justPressed('debug_1') || touchPad.buttonE.justPressed)
+			#if desktop
+			if (controls.justPressed('debug_1'))
 			{
 				selectedSomethin = true;
 				FlxG.mouse.visible = false;
-				MusicBeatState.switchState(new states.FreeplayState());
-			        PlayState.isSecret = true;
+				MusicBeatState.switchState(new FreeplayState());
 			}
+			#end
 		}
 
 		super.update(elapsed);
