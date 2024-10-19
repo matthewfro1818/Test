@@ -1,15 +1,12 @@
 package;
 
 import flixel.FlxObject;
-import flixel.FlxSprite;
 import flixel.effects.FlxFlicker;
 import lime.app.Application;
 import states.editors.MasterEditorMenu;
 import options.OptionsState;
-import backend.MusicBeatState;
 
-enum ExtrasMenuColumn
-{
+enum ExtrasMenuColumn {
 	LEFT;
 	CENTER;
 	RIGHT;
@@ -17,13 +14,12 @@ enum ExtrasMenuColumn
 
 class ExtrasMenuState extends MusicBeatState
 {
-	public static var psychEngineVersion:String = '1.0-prerelease'; // This is also used for Discord RPC
+	public static var psychEngineVersion:String = '1.0'; // This is also used for Discord RPC
 	public static var curSelected:Int = 0;
-	public static var curColumn:ExtrasMenuColumn = LEFT;
+	public static var curColumn:ExtrasMenuColumn = CENTER;
 	var allowMouse:Bool = true; //Turn this off to block mouse movement in menus
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
-	var char:FlxSprite;
 	var leftItem:FlxSprite;
 	var rightItem:FlxSprite;
 
@@ -55,7 +51,7 @@ class ExtrasMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		var yScroll:Float = 0.25;
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/space'));
+		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image(‎'backgrounds/space'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.scrollFactor.set(0, yScroll);
 		bg.setGraphicSize(Std.int(bg.width * 1.175));
@@ -63,20 +59,16 @@ class ExtrasMenuState extends MusicBeatState
 		bg.screenCenter();
 		add(bg);
 
+		var bg2:FlxSprite = new FlxSprite((-80).loadGraphic(Paths.image(‎'backgrounds/thing'‎));
+		bg2.antialiasing = ClientPrefs.data.antialiasing;
+		bg2.scrollFactor.set(0, yScroll);
+		bg2.setGraphicSize(Std.int(bg2.width * 1.175));
+		bg2.updateHitbox();
+		bg2.screenCenter();
+		add(bg2);
+
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
-
-		magenta = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/space'));
-		magenta.scrollFactor.set(0, yScroll);
-		magenta.updateHitbox();
-		magenta.screenCenter();
-		add(magenta);
-
-		var magenta2 = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/thing'));
-		magenta2.scrollFactor.set(0, yScroll);
-		magenta2.updateHitbox();
-		magenta2.screenCenter();
-		add(magenta2);
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
@@ -98,11 +90,11 @@ class ExtrasMenuState extends MusicBeatState
 
 		var psychVer:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		psychVer.scrollFactor.set();
-		psychVer.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		psychVer.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(psychVer);
 		var fnfVer:FlxText = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
 		fnfVer.scrollFactor.set();
-		fnfVer.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		fnfVer.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(fnfVer);
 		changeItem();
 
@@ -117,8 +109,6 @@ class ExtrasMenuState extends MusicBeatState
 		#end
 		#end
 
-		addTouchPad('NONE', 'E');
-
 		super.create();
 
 		FlxG.camera.follow(camFollow, null, 0.15);
@@ -129,21 +119,21 @@ class ExtrasMenuState extends MusicBeatState
 		var modsbutton:FlxSprite = new FlxSprite(269, 241).loadGraphic(Paths.image('mainmenu/mods'));//Thanks to EIT for the tutoria
 		modsbutton.scrollFactor.set(0, 0);
 		modsbutton.flipX = false; //You should have already animated it in the right position in Animate
-		add(modsbutton);
+		menuItems.add(modsbutton);
 
 		var discordbutton:FlxSprite = new FlxSprite(269, 482).loadGraphic(Paths.image('mainmenu/discord'));//Thanks to EIT for the tutorial
 		discordbutton.scrollFactor.set(0, 0);
 		discordbutton.flipX = false; //You should have already animated it in the right position in Animate
-		add(discordbutton);
+		menuItems.add(discordbutton);
 
 		var creditsbutton:FlxSprite = new FlxSprite(269, 702).loadGraphic(Paths.image('mainmenu/credits'));//Thanks to EIT for the tutorial
 		creditsbutton.scrollFactor.set(0, 0);
 		creditsbutton.flipX = false; //You should have already animated it in the right position in Animate
-		add(creditsbutton);
+		menuItems.add(creditsbutton);
 
-	        var mchar:FlxSprite = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));
+                var mchar:FlxSprite = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));
 		mchar.scrollFactor.set(0, 0);
-		add(mchar);
+		menuItems.add(mchar);
 	}
 
 	var selectedSomethin:Bool = false;
@@ -265,10 +255,10 @@ class ExtrasMenuState extends MusicBeatState
 				selectedSomethin = true;
 				FlxG.mouse.visible = false;
 				FlxG.sound.play(Paths.sound('cancelMenu'));
-				MusicBeatState.switchState(new states.MainMenuState());
+				MusicBeatState.switchState(new TitleState());
 			}
 
-			if (controls.ACCEPT || (FlxG.mouse.overlaps(menuItems, FlxG.camera) && FlxG.mouse.justPressed && allowMouse))
+			if (controls.ACCEPT || (FlxG.mouse.justPressed && allowMouse))
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				if (optionShit[curSelected] != 'donate')
@@ -300,6 +290,7 @@ class ExtrasMenuState extends MusicBeatState
 					{
 						switch (option)
 						{
+							case 'story_mode':
 							case 'play':
 								FlxG.switchState(new PlayMenuState());
 							case 'extras':
@@ -343,12 +334,14 @@ class ExtrasMenuState extends MusicBeatState
 				}
 				else CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
 			}
-			else if (controls.justPressed('debug_1') || touchPad.buttonE.justPressed)
+			#if desktop
+			if (controls.justPressed('debug_1'))
 			{
 				selectedSomethin = true;
 				FlxG.mouse.visible = false;
 				MusicBeatState.switchState(new MasterEditorMenu());
 			}
+			#end
 		}
 
 		super.update(elapsed);
