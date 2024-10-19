@@ -59,7 +59,7 @@ class PlayMenuState extends MusicBeatState
 		bg.screenCenter();
 		add(bg);
 
-		var bg2:FlxSprite = new FlxSprite((-80).loadGraphic(Paths.image(‎'backgrounds/thing'‎));
+		var bg2:FlxSprite = new FlxSprite((-80).loadGraphic(Paths.image('backgrounds/thing'‎));
 		bg2.antialiasing = ClientPrefs.data.antialiasing;
 		bg2.scrollFactor.set(0, yScroll);
 		bg2.setGraphicSize(Std.int(bg2.width * 1.175));
