@@ -151,9 +151,9 @@ class MainMenuState extends MusicBeatState
 		mchar.scrollFactor.set(0, 0);
 		menuItems.add(mchar);
 
-	  var mchar:FlxSprite = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));
+	        var mchar:FlxSprite = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));
 		mchar.scrollFactor.set(0, 0);
-		add(mchar);
+		menuItems.add(mchar);
 	}
 
 	var selectedSomethin:Bool = false;
