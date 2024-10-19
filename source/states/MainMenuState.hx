@@ -8,7 +8,8 @@ import states.editors.MasterEditorMenu;
 import options.OptionsState;
 import backend.MusicBeatState;
 
-enum MainMenuColumn {
+enum MainMenuColumn
+{
 	LEFT;
 	CENTER;
 	RIGHT;
@@ -57,6 +58,7 @@ class MainMenuState extends MusicBeatState
 		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/space'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.scrollFactor.set(0, yScroll);
+		bg.setGraphicSize(Std.int(bg.width * 1.175));
 		bg.updateHitbox();
 		bg.screenCenter();
 		add(bg);
@@ -64,13 +66,13 @@ class MainMenuState extends MusicBeatState
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		magenta = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/space'));
+		magenta = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/space'));
 		magenta.scrollFactor.set(0, yScroll);
 		magenta.updateHitbox();
 		magenta.screenCenter();
 		add(magenta);
 
-		var magenta2 = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/thing'));
+		var magenta2 = new FlxSprite(-80).loadGraphic(Paths.image('backgrounds/thing'));
 		magenta2.scrollFactor.set(0, yScroll);
 		magenta2.updateHitbox();
 		magenta2.screenCenter();
@@ -129,23 +131,27 @@ class MainMenuState extends MusicBeatState
 		if(optionShit.length < 6) scr = 0;
 		playbutton.scrollFactor.set(0, scr);
 		playbutton.flipX = false; //You should have already animated it in the right position in Animate
-		add(playbutton);
+		menuItems.add(playbutton);
 
 		var extrasbutton:FlxSprite = new FlxSprite(269, 482).loadGraphic(Paths.image('mainmenu/extras')); //Thanks to EIT for the tutorial
 		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
 		extrasbutton.scrollFactor.set(0, scr);
 		extrasbutton.flipX = false; //You should have already animated it in the right position in Animate
-		add(extrasbutton);
+		menuItems.add(extrasbutton);
 
 		var optionsbutton:FlxSprite = new FlxSprite(269, 702).loadGraphic(Paths.image('mainmenu/options')); //Thanks to EIT for the tutorial
 		var scr:Float = (optionShit.length - 4) * 0.135;
 		if(optionShit.length < 6) scr = 0;
 		optionsbutton.scrollFactor.set(0, scr);
 		optionsbutton.flipX = false; //You should have already animated it in the right position in Animate
-		add(optionsbutton);
+		menuItems.add(optionsbutton);
 
 	        var mchar:FlxSprite = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));
+		mchar.scrollFactor.set(0, 0);
+		menuItems.add(mchar);
+
+	  var mchar:FlxSprite = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));
 		mchar.scrollFactor.set(0, 0);
 		add(mchar);
 	}
@@ -269,7 +275,7 @@ class MainMenuState extends MusicBeatState
 				selectedSomethin = true;
 				FlxG.mouse.visible = false;
 				FlxG.sound.play(Paths.sound('cancelMenu'));
-				MusicBeatState.switchState(new TitleState());
+				MusicBeatState.switchState(new states.MainMenuState());
 			}
 
 			if (controls.ACCEPT || (FlxG.mouse.overlaps(menuItems, FlxG.camera) && FlxG.mouse.justPressed && allowMouse))
@@ -307,24 +313,24 @@ class MainMenuState extends MusicBeatState
 							case 'play':
 								FlxG.switchState(new PlayMenuState());
 							case 'extras':
-								FlxG.switchState(new ExtrasMenuState());
+								FlxG.switchState(new MainMenuState());
 							case 'story_mode':
-								MusicBeatState.switchState(new StoryMenuState());
+								MusicBeatState.switchState(new states.StoryMenuState());
 							case 'freeplay':
-								MusicBeatState.switchState(new FreeplayState());
+								MusicBeatState.switchState(new states.FreeplayState());
 
 							#if MODS_ALLOWED
 							case 'mods':
-								MusicBeatState.switchState(new ModsMenuState());
+								MusicBeatState.switchState(new states.ModsMenuState());
 							#end
 
 							#if ACHIEVEMENTS_ALLOWED
 							case 'achievements':
-								MusicBeatState.switchState(new AchievementsMenuState());
+								MusicBeatState.switchState(new states.AchievementsMenuState());
 							#end
 
 							case 'credits':
-								MusicBeatState.switchState(new CreditsState());
+								MusicBeatState.switchState(new states.CreditsState());
 							case 'options':
 								MusicBeatState.switchState(new OptionsState());
 								OptionsState.onPlayState = false;
