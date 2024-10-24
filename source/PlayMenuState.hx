@@ -5,6 +5,7 @@ import flixel.effects.FlxFlicker;
 import lime.app.Application;
 import states.editors.MasterEditorMenu;
 import options.OptionsState;
+import flixel.FlxSprite;
 
 enum PlayMenuColumn {
 	LEFT;
