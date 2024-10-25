@@ -126,30 +126,52 @@ class MainMenuState extends MusicBeatState
 
 	function createMenuItem(name:String, x:Float, y:Float):FlxSprite
 	{
-		var playbutton:FlxSprite = new FlxSprite(269, 241).loadGraphic(Paths.image('mainmenu/play')); //Thanks to EIT for the tutorial
-		var scr:Float = (optionShit.length - 4) * 0.135;
-		if(optionShit.length < 6) scr = 0;
-		playbutton.scrollFactor.set(0, scr);
-		playbutton.flipX = false; //You should have already animated it in the right position in Animate
-		menuItems.add(playbutton);
-
-		var extrasbutton:FlxSprite = new FlxSprite(269, 482).loadGraphic(Paths.image('mainmenu/extras')); //Thanks to EIT for the tutorial
-		var scr:Float = (optionShit.length - 4) * 0.135;
-		if(optionShit.length < 6) scr = 0;
-		extrasbutton.scrollFactor.set(0, scr);
-		extrasbutton.flipX = false; //You should have already animated it in the right position in Animate
-		menuItems.add(extrasbutton);
-
-		var optionsbutton:FlxSprite = new FlxSprite(269, 702).loadGraphic(Paths.image('mainmenu/options')); //Thanks to EIT for the tutorial
-		var scr:Float = (optionShit.length - 4) * 0.135;
-		if(optionShit.length < 6) scr = 0;
-		optionsbutton.scrollFactor.set(0, scr);
-		optionsbutton.flipX = false; //You should have already animated it in the right position in Animate
-		menuItems.add(optionsbutton);
-
-	        var mchar:FlxSprite = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));
-		mchar.scrollFactor.set(0, 0);
-		menuItems.add(mchar);
+               var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
+               var menuItem:FlxSprite = new FlxSprite(269, 241).loadGraphic(Paths.image('mainmenu/play')); //Thanks to EIT for the tutorial
+               menuItem.scale.x = scale * 2;
+               menuItem.scale.y = scale * 2;
+               menuItem.ID = 0;
+               menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
+               menuItems.add(menuItem);
+               var scr:Float = (optionShit.length - 4) * 0.135;
+               if (optionShit.length < 6) scr = 0;
+               menuItem.scrollFactor.set(0, scr);
+               //menuItem.antialiasing = ClientPrefs.globalAntialiasing;
+               menuItem.updateHitbox();
+		
+               offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
+               menuItem = new FlxSprite(269, 482).loadGraphic(Paths.image('mainmenu/extras')); //Thanks to EIT for the tutorial
+               menuItem.scale.x = scale * 2;
+               menuItem.scale.y = scale * 2;
+               menuItem.ID = 1;
+               menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
+               menuItems.add(menuItem);
+               scr = (optionShit.length - 4) * 0.135;
+               if (optionShit.length < 6) scr = 1;
+               menuItem.scrollFactor.set(1, scr);
+               //menuItem.antialiasing = ClientPrefs.globalAntialiasing;
+               menuItem.updateHitbox();
+		
+               offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
+               menuItem = new FlxSprite(269, 702).loadGraphic(Paths.image('mainmenu/options')); //Thanks to EIT for the tutorial
+               menuItem.scale.x = scale * 2;
+               menuItem.scale.y = scale * 2;
+               menuItem.ID = 1;
+               menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
+               menuItems.add(menuItem);
+               scr = (optionShit.length - 4) * 0.135;
+               if (optionShit.length < 6) scr = 1;
+               menuItem.scrollFactor.set(1, scr);
+               //menuItem.antialiasing = ClientPrefs.globalAntialiasing;
+               menuItem.updateHitbox(); 
+	       
+	       var gfDance:FlxSprite; // to put the gf on the menu mme
+	       gfDance = new FlxSprite(238, 199).loadGraphic(Paths.image('backgrounds/$name'));
+	       add(gfDance);
+	       if (gfDance != null) {
+	           danceLeft = !danceLeft;
+	           if (danceLeft) gfDance.animation.play('danceLeft');
+	       }
 	}
 
 	var selectedSomethin:Bool = false;
