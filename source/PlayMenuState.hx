@@ -117,23 +117,44 @@ class PlayMenuState extends MusicBeatState
 
 	function createMenuItem(name:String, x:Float, y:Float):FlxSprite
 	{
-		var extrendedbutton:FlxSprite = new FlxSprite(912, 257).loadGraphic(Paths.image('mainmenu/extrended')); //Thanks to EIT for the tutorial
-		extrendedbutton.scrollFactor.set(0, 0);
-		extrendedbutton.setGraphicSize(Std.int(extrendedbutton.width * 0.9));
-		extrendedbutton.flipX = false; //You should have already animated it in the right position in Animate
-		menuItems.add(extrendedbutton);
-
-		var goldenbutton:FlxSprite = new FlxSprite(912, 462).loadGraphic(Paths.image('mainmenu/golden')); //Thanks to EIT for the tutorial
-		goldenbutton.scrollFactor.set(0, 0);
-		goldenbutton.setGraphicSize(Std.int(goldenbutton.width * 0.9));
-		goldenbutton.flipX = false; //You should have already animated it in the right position in Animate
-		menuItems.add(goldenbutton);
-						
-		var davbambutton:FlxSprite = new FlxSprite(912, 462).loadGraphic(Paths.image('mainmenu/daveandbambibutton')); //Thanks to EIT for the tutorial
-		davbambutton.scrollFactor.set(0, 0);
-		davbambutton.setGraphicSize(Std.int(davbambutton.width * 0.9));
-		davbambutton.flipX = false; //You should have already animated it in the right position in Animate
-		menuItems.add(davbambutton);
+               var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
+               var menuItem:FlxSprite = new FlxSprite(269, 241).loadGraphic(Paths.image('mainmenu/extrended')); //Thanks to EIT for the tutorial
+               menuItem.scale.x = scale * 2;
+               menuItem.scale.y = scale * 2;
+               menuItem.ID = 0;
+               menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
+               menuItems.add(menuItem);
+               var scr:Float = (optionShit.length - 4) * 0.135;
+               if (optionShit.length < 6) scr = 0;
+               menuItem.scrollFactor.set(0, scr);
+               //menuItem.antialiasing = ClientPrefs.globalAntialiasing;
+               menuItem.updateHitbox();
+		
+               offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
+               menuItem = new FlxSprite(912, 462).loadGraphic(Paths.image('mainmenu/golden')); //Thanks to EIT for the tutorial
+               menuItem.scale.x = scale * 2;
+               menuItem.scale.y = scale * 2;
+               menuItem.ID = 1;
+               menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
+               menuItems.add(menuItem);
+               scr = (optionShit.length - 4) * 0.135;
+               if (optionShit.length < 6) scr = 1;
+               menuItem.scrollFactor.set(1, scr);
+               //menuItem.antialiasing = ClientPrefs.globalAntialiasing;
+               menuItem.updateHitbox();
+		
+               offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
+               menuItem = new FlxSprite(912, 662).loadGraphic(Paths.image('mainmenu/daveandbambibutton')); //Thanks to EIT for the tutorial
+               menuItem.scale.x = scale * 2;
+               menuItem.scale.y = scale * 2;
+               menuItem.ID = 1;
+               menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
+               menuItems.add(menuItem);
+               scr = (optionShit.length - 4) * 0.135;
+               if (optionShit.length < 6) scr = 1;
+               menuItem.scrollFactor.set(1, scr);
+               //menuItem.antialiasing = ClientPrefs.globalAntialiasing;
+               menuItem.updateHitbox();
 	}
 
 	var selectedSomethin:Bool = false;
